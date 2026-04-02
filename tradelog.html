@@ -164,10 +164,8 @@ body{font-family:'Syne',sans-serif;background:#080808;color:#f2f2f2;min-height:1
 .cal-sum-val{font-size:16px;font-weight:700;font-family:‘JetBrains Mono’,monospace}
 
 /* TIME FILTERS */
-.filter-row{display:flex;gap:4px;margin-bottom:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
-.filter-row::-webkit-scrollbar{display:none}
-.fpill{padding:4px 10px;border-radius:20px;border:1px solid #282828;background:none;color:#444;font-family:‘Syne’,sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.04em;white-space:nowrap;transition:all .15s}
-.fpill.active{background:#1e1e1e;border-color:#444;color:#e8e8e8}
+.fselect{background:#1a1a1a;border:1px solid #282828;color:#888;font-family:‘Syne’,sans-serif;font-size:10px;font-weight:700;padding:3px 22px 3px 8px;border-radius:6px;cursor:pointer;-webkit-appearance:none;appearance:none;letter-spacing:.04em;background-image:url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘8’ height=‘5’ viewBox=‘0 0 8 5’%3E%3Cpath fill=’%23555’ d=‘M0 0l4 5 4-5z’/%3E%3C/svg%3E”);background-repeat:no-repeat;background-position:right 7px center;outline:none}
+.fselect option{background:#1a1a1a;color:#e8e8e8}
 .loading{text-align:center;padding:60px 0;color:#333;font-size:13px}
 .empty{text-align:center;padding:24px 0;color:#333;font-size:12px}
 
@@ -661,9 +659,9 @@ function filterByPeriod(rows, period, dateColIdx){
     }catch(e){return false;}
   });
 }
-function setHeroFilter(p,el){heroFilter=p;document.querySelectorAll('#hero-filters .fpill').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderDash();}
-function setFutFilter(p,el){futFilter=p;document.querySelectorAll('#fut-filters .fpill').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderDash();}
-function setOptFilter(p,el){optFilter=p;document.querySelectorAll('#opt-filters .fpill').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderDash();}
+function setHeroFilter(p){heroFilter=p;renderDash();}
+function setFutFilter(p){futFilter=p;renderDash();}
+function setOptFilter(p){optFilter=p;renderDash();}
 function renderDash(){
   try{
     if(!data)return;
@@ -714,14 +712,14 @@ function renderDash(){
     const showFutTrades=closedTrades.slice(0,3);
     const showOptRows=[...allOptRows].reverse().slice(0,3);
 
-    const pills=(id,cur,fn)=>['Today','Week','Month','Year','All'].map(p=>`<button class="fpill${cur===p.toLowerCase()||cur==='all'&&p==='All'?' active':''}" onclick="${fn}('${p.toLowerCase()}',this)">${p}</button>`).join('');
+    const fsel=(id,cur,fn)=>`<select class="fselect" id="${id}" onchange="${fn}(this.value,this)"><option value='today'${cur==='today'?' selected':''}>Today</option><option value='week'${cur==='week'?' selected':''}>This Week</option><option value='month'${cur==='month'?' selected':''}>This Month</option><option value='year'${cur==='year'?' selected':''}>This Year</option><option value='all'${cur==='all'?' selected':''}>All Time</option></select>`;
 
     document.getElementById('dash-content').innerHTML=`
       <div class="hero">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
           <div class="hero-label" style="margin-bottom:0">Combined P/L</div>
+          ${fsel('hero-filters',heroFilter,'setHeroFilter')}
         </div>
-        <div id="hero-filters" class="filter-row" style="margin-bottom:12px">${pills('hero-filters',heroFilter,'setHeroFilter')}</div>
         <div class="hero-amount ${heroCombined>=0?'pos':'neg'}">${fmt(heroCombined)||'+$0.00'}</div>
         <div class="hero-sub">${heroFutCloses.length} fut closes · ${heroOptRows.length} opt trades</div>
       </div>
@@ -729,16 +727,16 @@ function renderDash(){
         <div class="stat-card">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
             <div class="stat-label" style="margin-bottom:0">Futures</div>
+            ${fsel('fut-filters',futFilter,'setFutFilter')}
           </div>
-          <div id="fut-filters" class="filter-row" style="margin-bottom:10px">${pills('fut-filters',futFilter,'setFutFilter')}</div>
           <div class="stat-val ${futTotal>=0?'pos':'neg'}">${fmt(futTotal)||'$0'}</div>
           <div class="stat-meta"><span>WR <b>${futWR}%</b></span><span><b>${futWins}</b>W / <b>${futCloseRows.length-futWins}</b>L</span></div>
         </div>
         <div class="stat-card">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
             <div class="stat-label" style="margin-bottom:0">Options</div>
+            ${fsel('opt-filters',optFilter,'setOptFilter')}
           </div>
-          <div id="opt-filters" class="filter-row" style="margin-bottom:10px">${pills('opt-filters',optFilter,'setOptFilter')}</div>
           <div class="stat-val ${optTotal>=0?'pos':'neg'}">${fmt(optTotal)||'$0'}</div>
           <div class="stat-meta"><span>WR <b>${optWR}%</b></span><span><b>${optWins}</b>W / <b>${optCloseRows.length-optWins}</b>L</span></div>
         </div>
