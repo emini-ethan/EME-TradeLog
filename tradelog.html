@@ -5,8 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Emini Ethan</title>
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiMwYTBhMGEiLz4KICA8cmVjdCB4PSIwIiB5PSI5NCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI4NiIgZmlsbD0iIzExMSIvPgogIDx0ZXh0IHg9IjkwIiB5PSI3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNlOGU4ZTgiIGxldHRlci1zcGFjaW5nPSI0Ij5FTUlOSTwvdGV4dD4KICA8bGluZSB4MT0iMjQiIHkxPSI5NCIgeDI9IjE1NiIgeTI9Ijk0IiBzdHJva2U9IiNlOGU4ZTgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+CiAgPHRleHQgeD0iOTAiIHk9IjEzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNlOGU4ZTgiIGxldHRlci1zcGFjaW5nPSI0Ij5FVEhBTjwvdGV4dD4KPC9zdmc+">
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIGZpbGw9IiMwYTBhMGEiLz4KICA8cmVjdCB4PSIwIiB5PSI5NCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI4NiIgZmlsbD0iIzExMSIvPgogIDx0ZXh0IHg9IjkwIiB5PSI3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNlOGU4ZTgiIGxldHRlci1zcGFjaW5nPSI0Ij5FTUlOSTwvdGV4dD4KICA8bGluZSB4MT0iMjQiIHkxPSI5NCIgeDI9IjE1NiIgeTI9Ijk0IiBzdHJva2U9IiNlOGU4ZTgiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4yIi8+CiAgPHRleHQgeD0iOTAiIHk9IjEzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNlOGU4ZTgiIGxldHRlci1zcGFjaW5nPSI0Ij5FVEhBTjwvdGV4dD4KPC9zdmc+">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -164,6 +162,12 @@ body{font-family:'Syne',sans-serif;background:#080808;color:#f2f2f2;min-height:1
 .cal-sum-card{background:#0f0f0f;border:1px solid #1c1c1c;border-radius:14px;padding:12px;text-align:center}
 .cal-sum-label{font-size:9px;font-weight:700;color:#333;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
 .cal-sum-val{font-size:16px;font-weight:700;font-family:‘JetBrains Mono’,monospace}
+
+/* TIME FILTERS */
+.filter-row{display:flex;gap:4px;margin-bottom:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.filter-row::-webkit-scrollbar{display:none}
+.fpill{padding:4px 10px;border-radius:20px;border:1px solid #282828;background:none;color:#444;font-family:‘Syne’,sans-serif;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:.04em;white-space:nowrap;transition:all .15s}
+.fpill.active{background:#1e1e1e;border-color:#444;color:#e8e8e8}
 .loading{text-align:center;padding:60px 0;color:#333;font-size:13px}
 .empty{text-align:center;padding:24px 0;color:#333;font-size:12px}
 
@@ -185,6 +189,46 @@ body{font-family:'Syne',sans-serif;background:#080808;color:#f2f2f2;min-height:1
 .cal-cell-pl{font-size:12px}
 }
 </style>
+
+<script>
+(function(){
+  try{
+    const c=document.createElement('canvas');
+    c.width=180;c.height=180;
+    const ctx=c.getContext('2d');
+    // Background
+    ctx.fillStyle='#0a0a0a';
+    ctx.beginPath();
+    const r=22;ctx.moveTo(r,0);ctx.lineTo(180-r,0);ctx.quadraticCurveTo(180,0,180,r);
+    ctx.lineTo(180,180-r);ctx.quadraticCurveTo(180,180,180-r,180);
+    ctx.lineTo(r,180);ctx.quadraticCurveTo(0,180,0,180-r);
+    ctx.lineTo(0,r);ctx.quadraticCurveTo(0,0,r,0);
+    ctx.closePath();ctx.fill();
+    // Top half slightly lighter
+    ctx.fillStyle='#111';
+    ctx.fillRect(0,90,180,90);
+    // Divider line
+    ctx.strokeStyle='rgba(232,232,232,0.15)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(20,90);ctx.lineTo(160,90);ctx.stroke();
+    // EMINI text
+    ctx.fillStyle='#e8e8e8';
+    ctx.font='800 26px Arial,sans-serif';
+    ctx.textAlign='center';ctx.letterSpacing='4px';
+    ctx.fillText('EMINI',90,66);
+    // ETHAN text
+    ctx.fillText('ETHAN',90,126);
+    // Apply as touch icon
+    const link=document.createElement('link');
+    link.rel='apple-touch-icon';
+    link.href=c.toDataURL('image/png');
+    document.head.appendChild(link);
+    const link2=document.createElement('link');
+    link2.rel='icon';link2.type='image/png';
+    link2.href=c.toDataURL('image/png');
+    document.head.appendChild(link2);
+  }catch(e){}
+})();
+</script>
 
 </head>
 <body>
@@ -278,7 +322,7 @@ body{font-family:'Syne',sans-serif;background:#080808;color:#f2f2f2;min-height:1
 
 <script>
 const URL='https://script.google.com/macros/s/AKfycbx8Cv6xpAxGB0La3SJJ8uuTuGrgjDuFa_J-SF0sTFM-wIO11fc_08XRPu6rQT3VAtrW/exec';
-let mode='futures',data=null,allFut=false,allOpt=false;
+let mode='futures',data=null,allFut=false,allOpt=false,heroFilter='all',futFilter='all',optFilter='all';
 
 // Set today on date fields
 try{const t=new Date().toISOString().split('T')[0];['f-date','o-date','o-exp'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=t;});}catch(e){}
@@ -599,27 +643,64 @@ function setSyncState(s){
   }catch(e){}
 }
 
+
+function filterByPeriod(rows, period, dateColIdx){
+  if(period==='all')return rows;
+  const now=new Date();
+  const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  return rows.filter(r=>{
+    try{
+      const d=new Date(r[dateColIdx]);
+      if(isNaN(d.getTime()))return false;
+      const rd=new Date(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate());
+      if(period==='today')return rd.getTime()===today.getTime();
+      if(period==='week'){const w=new Date(today);w.setDate(today.getDate()-today.getDay());return rd>=w;}
+      if(period==='month')return rd.getMonth()===today.getMonth()&&rd.getFullYear()===today.getFullYear();
+      if(period==='year')return rd.getFullYear()===today.getFullYear();
+      return true;
+    }catch(e){return false;}
+  });
+}
+function setHeroFilter(p,el){heroFilter=p;document.querySelectorAll('#hero-filters .fpill').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderDash();}
+function setFutFilter(p,el){futFilter=p;document.querySelectorAll('#fut-filters .fpill').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderDash();}
+function setOptFilter(p,el){optFilter=p;document.querySelectorAll('#opt-filters .fpill').forEach(x=>x.classList.remove('active'));el.classList.add('active');renderDash();}
 function renderDash(){
   try{
     if(!data)return;
-    const futRows=data.futures?data.futures.slice(1):[];
-    const trades=buildPairs(futRows);
-    const closedPLs=Object.values(trades).filter(t=>t.closes.length>0).map(t=>t.closes.reduce((s,r)=>s+(parseFloat(r[8])||0),0));
-    const futTotal=closedPLs.reduce((a,b)=>a+b,0);
-    const futWins=closedPLs.filter(v=>v>0).length;
-    const futWR=closedPLs.length?Math.round(futWins/closedPLs.length*100):0;
 
-    const optRows=(data.options?data.options.slice(1):[]).filter(isValidOptRow);
-    const optPLs=optRows.map(r=>parseFloat(r[8])||0);
-    const optTotal=optPLs.reduce((a,b)=>a+b,0);
-    const optWins=optPLs.filter(v=>v>0).length;
-    const optWR=optPLs.length?Math.round(optWins/optPLs.length*100):0;
-    const combined=futTotal+optTotal;
+    // All futures close rows
+    const allFutRows=data.futures?data.futures.slice(1):[];
+    const allTrades=buildPairs(allFutRows);
 
-    // Setup breakdown
+    // Hero: filter all closes by heroFilter period
+    const heroFutCloses=filterByPeriod(
+      Object.values(allTrades).filter(t=>t.closes.length>0).flatMap(t=>t.closes),
+      heroFilter, 0
+    );
+    const heroOptRows=filterByPeriod((data.options?data.options.slice(1):[]).filter(isValidOptRow), heroFilter, 0);
+    const heroCombined=heroFutCloses.reduce((s,r)=>s+(parseFloat(r[8])||0),0)
+                      +heroOptRows.reduce((s,r)=>s+(parseFloat(r[8])||0),0);
+
+    // Futures stat card: filter by futFilter
+    const futCloseRows=filterByPeriod(
+      Object.values(allTrades).filter(t=>t.closes.length>0).flatMap(t=>t.closes),
+      futFilter, 0
+    );
+    const futTotal=futCloseRows.reduce((s,r)=>s+(parseFloat(r[8])||0),0);
+    const futWins=futCloseRows.filter(r=>(parseFloat(r[8])||0)>0).length;
+    const futWR=futCloseRows.length?Math.round(futWins/futCloseRows.length*100):0;
+
+    // Options stat card: filter by optFilter
+    const allOptRows=(data.options?data.options.slice(1):[]).filter(isValidOptRow);
+    const optCloseRows=filterByPeriod(allOptRows, optFilter, 0);
+    const optTotal=optCloseRows.reduce((s,r)=>s+(parseFloat(r[8])||0),0);
+    const optWins=optCloseRows.filter(r=>(parseFloat(r[8])||0)>0).length;
+    const optWR=optCloseRows.length?Math.round(optWins/optCloseRows.length*100):0;
+
+    // Setup breakdown (all time)
     const setupColors={'FVG Reclaim':'#9d7fea','Liquidity Sweep':'#3ecfcf','Fractal Confirm':'#d466e8','Equal Levels':'#f5a623','Dealer Hedge Level':'#c8c8c8','0DTE Momentum':'#3ddc84','Other':'#444','Untagged':'#333'};
     const setups={};
-    Object.values(trades).filter(t=>t.closes.length>0).forEach(t=>{
+    Object.values(allTrades).filter(t=>t.closes.length>0).forEach(t=>{
       const pl=t.closes.reduce((acc,c)=>acc+(parseFloat(c[8])||0),0);
       const s=t.closes[0][11]||'Untagged';
       if(!setups[s])setups[s]={wins:0,total:0,pl:0};
@@ -628,27 +709,38 @@ function renderDash(){
     });
     const maxPL=Math.max(...Object.values(setups).map(s=>Math.abs(s.pl)),1);
 
-    const closedTrades=Object.entries(trades).filter(([,t])=>t.closes.length>0).reverse();
-    const openTrades=Object.entries(trades).filter(([,t])=>t.closes.length===0&&t.opens.length>0);
+    const closedTrades=Object.entries(allTrades).filter(([,t])=>t.closes.length>0).reverse();
+    const openTrades=Object.entries(allTrades).filter(([,t])=>t.closes.length===0&&t.opens.length>0);
     const showFutTrades=closedTrades.slice(0,3);
-    const showOptRows=[...optRows].reverse().slice(0,3);
+    const showOptRows=[...allOptRows].reverse().slice(0,3);
+
+    const pills=(id,cur,fn)=>['Today','Week','Month','Year','All'].map(p=>`<button class="fpill${cur===p.toLowerCase()||cur==='all'&&p==='All'?' active':''}" onclick="${fn}('${p.toLowerCase()}',this)">${p}</button>`).join('');
 
     document.getElementById('dash-content').innerHTML=`
       <div class="hero">
-        <div class="hero-label">Combined P/L</div>
-        <div class="hero-amount ${combined>=0?'pos':'neg'}">${fmt(combined)||'+$0.00'}</div>
-        <div class="hero-sub">${closedPLs.length} futures · ${optPLs.length} options</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <div class="hero-label" style="margin-bottom:0">Combined P/L</div>
+        </div>
+        <div id="hero-filters" class="filter-row" style="margin-bottom:12px">${pills('hero-filters',heroFilter,'setHeroFilter')}</div>
+        <div class="hero-amount ${heroCombined>=0?'pos':'neg'}">${fmt(heroCombined)||'+$0.00'}</div>
+        <div class="hero-sub">${heroFutCloses.length} fut closes · ${heroOptRows.length} opt trades</div>
       </div>
       <div class="stat-row">
         <div class="stat-card">
-          <div class="stat-label">Futures</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div class="stat-label" style="margin-bottom:0">Futures</div>
+          </div>
+          <div id="fut-filters" class="filter-row" style="margin-bottom:10px">${pills('fut-filters',futFilter,'setFutFilter')}</div>
           <div class="stat-val ${futTotal>=0?'pos':'neg'}">${fmt(futTotal)||'$0'}</div>
-          <div class="stat-meta"><span>WR <b>${futWR}%</b></span><span><b>${futWins}</b>W / <b>${closedPLs.length-futWins}</b>L</span></div>
+          <div class="stat-meta"><span>WR <b>${futWR}%</b></span><span><b>${futWins}</b>W / <b>${futCloseRows.length-futWins}</b>L</span></div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Options</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+            <div class="stat-label" style="margin-bottom:0">Options</div>
+          </div>
+          <div id="opt-filters" class="filter-row" style="margin-bottom:10px">${pills('opt-filters',optFilter,'setOptFilter')}</div>
           <div class="stat-val ${optTotal>=0?'pos':'neg'}">${fmt(optTotal)||'$0'}</div>
-          <div class="stat-meta"><span>WR <b>${optWR}%</b></span><span><b>${optWins}</b>W / <b>${optPLs.length-optWins}</b>L</span></div>
+          <div class="stat-meta"><span>WR <b>${optWR}%</b></span><span><b>${optWins}</b>W / <b>${optCloseRows.length-optWins}</b>L</span></div>
         </div>
       </div>
       ${openTrades.length?`<div class="sec-hdr"><span class="sec-title">Open (${openTrades.length})</span></div>${openTrades.map(([n,t])=>openCard(n,t)).join('')}`:''}
@@ -663,7 +755,7 @@ function renderDash(){
         <div>
           <div class="sec-hdr">
             <span class="sec-title">Options Trades</span>
-            ${optRows.length>3?`<button class="sec-btn" onclick="go('options',document.querySelector('.bnav-btn:nth-child(3)'));goDesk('options',document.querySelector('.desk-tab:nth-child(3)'))">See all ${optRows.length} →</button>`:''}
+            ${allOptRows.length>3?`<button class="sec-btn" onclick="go('options',document.querySelector('.bnav-btn:nth-child(3)'));goDesk('options',document.querySelector('.desk-tab:nth-child(3)'))">See all ${allOptRows.length} →</button>`:''}
           </div>
           ${showOptRows.length?showOptRows.map(r=>optCard(r)).filter(Boolean).join(''):'<div class="empty">No options trades yet</div>'}
         </div>
