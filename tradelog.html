@@ -506,10 +506,13 @@ function renderCalendar(){
       const map={};
       const type=window._calType;
       if(type==='all'||type==='futures'){
-        const pairs=buildPairs(data.futures?data.futures.slice(1):[]);
+        const allFutRows=data.futures?data.futures.slice(1):[];
+        const pairs=buildPairs(allFutRows);
+        // Build a rowIndex map so we can look up open rows by their position
+        const rowByIndex={};
+        allFutRows.forEach((r,i)=>{ rowByIndex[i+2]=r; }); // +2 because sheet row 1 is header
         Object.values(pairs).forEach(t=>{
           if(!t.closes.length||!t.opens.length)return;
-          const openRow=t.opens[0];
           t.closes.forEach(c=>{
             try{
               const pl=parseFloat(c[8]);if(isNaN(pl))return;
@@ -517,6 +520,17 @@ function renderCalendar(){
               const k=dt.getUTCFullYear()+'-'+(dt.getUTCMonth()+1)+'-'+dt.getUTCDate();
               if(!map[k])map[k]={pl:0,trades:[]};
               map[k].pl+=pl;
+              // Match open: use matched row index if available, otherwise closest open by date
+              const matchedRowNum=parseInt(c[7]);
+              let openRow=null;
+              if(!isNaN(matchedRowNum)&&rowByIndex[matchedRowNum]){
+                openRow=rowByIndex[matchedRowNum];
+              } else {
+                // fallback: find open with closest date <= close date
+                const closeDt=new Date(c[0]);
+                const sorted=t.opens.filter(o=>new Date(o[0])<=closeDt).sort((a,b)=>new Date(b[0])-new Date(a[0]));
+                openRow=sorted[0]||t.opens[0];
+              }
               map[k].trades.push({
                 ticker:c[1]||'--',
                 side:String(c[4]||openRow[4]||'').toLowerCase(),
