@@ -506,28 +506,24 @@ function renderCalendar(){
       const map={};
       const type=window._calType;
       if(type==='all'||type==='futures'){
-        (data.futures?data.futures.slice(1):[]).forEach(r=>{
-          try{
-            if(!r[0]||r[3]==='open'||r[3]==='scale in')return;
-            const pl=parseFloat(r[8]);if(isNaN(pl))return;
-            const dt=new Date(r[0]);if(isNaN(dt.getTime()))return;
-            const k=dt.getUTCFullYear()+'-'+(dt.getUTCMonth()+1)+'-'+dt.getUTCDate();
-            if(!map[k])map[k]={pl:0,trades:[],type:'futures'};
-            map[k].pl+=pl;
-            map[k].trades.push({ticker:r[1]||'—',side:r[4]||'',entry:r[5]||'',exit:'',pl:pl,pts:r[9]||'',type:'futures'});
-          }catch(e){}
-        });
-        // Match exits to entries for exit price
         const pairs=buildPairs(data.futures?data.futures.slice(1):[]);
         Object.values(pairs).forEach(t=>{
+          if(!t.closes.length||!t.opens.length)return;
+          const openRow=t.opens[0];
           t.closes.forEach(c=>{
             try{
+              const pl=parseFloat(c[8]);if(isNaN(pl))return;
               const dt=new Date(c[0]);if(isNaN(dt.getTime()))return;
               const k=dt.getUTCFullYear()+'-'+(dt.getUTCMonth()+1)+'-'+dt.getUTCDate();
-              if(map[k]){
-                const match=map[k].trades.find(tr=>tr.type==='futures'&&tr.ticker===c[1]&&Math.abs(parseFloat(tr.pl)-(parseFloat(c[8])||0))<0.01);
-                if(match)match.exit=c[5]||'';
-              }
+              if(!map[k])map[k]={pl:0,trades:[]};
+              map[k].pl+=pl;
+              map[k].trades.push({
+                ticker:c[1]||'--',
+                side:String(c[4]||openRow[4]||'').toLowerCase(),
+                entry:String(openRow[5]||'--'),
+                exit:String(c[5]||'--'),
+                pl:pl,pts:c[9]||'',type:'futures'
+              });
             }catch(e){}
           });
         });
