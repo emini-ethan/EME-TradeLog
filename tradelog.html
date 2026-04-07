@@ -486,16 +486,15 @@ function openCard(num,t){
 }
 
 
+if(!window._calType)window._calType='all';
+if(!window._calYear)window._calYear=new Date().getFullYear();
+if(!window._calMonth)window._calMonth=new Date().getMonth();
 function renderCalendar(){
   try{
     if(!data)return;
     const el=document.getElementById('cal-content');
     if(!el)return;
-    if(!window._calType)window._calType='all';
-
     const now=new Date();
-    if(!window._calYear)window._calYear=now.getFullYear();
-    if(!window._calMonth)window._calMonth=now.getMonth();
 
     function fmtShort(n){
       const v=parseFloat(n);if(isNaN(v))return'';
@@ -571,7 +570,7 @@ function renderCalendar(){
         const dd=dayMap[k];
         const isToday=k===todayKey;
         let cls='cal-cell'+(isToday?' today':'')+(dd?dd.pl>0?' profit':dd.pl<0?' loss':'':'');
-        const clickable=dd?`onclick="showDayTrades('${k}')" style="cursor:pointer"`:'';
+        const clickable=dd?`onclick="showDayTrades('${k}')" ontouchend="event.preventDefault();showDayTrades('${k}')" style="cursor:pointer"`:'';
         cells+=`<div class="${cls}" ${clickable}>
           <span class="cal-cell-day">${d}</span>
           ${dd?`<span class="cal-cell-pl">${fmtShort(dd.pl)}</span><span class="cal-cell-trades">${dd.trades.length}t</span>`:''}
@@ -583,7 +582,7 @@ function renderCalendar(){
           <button class="cal-nav-btn" onclick="window._calMonth--;if(window._calMonth<0){window._calMonth=11;window._calYear--;}renderCalendar()">‹</button>
           <span class="cal-month">${monthName}</span>
           <div style="display:flex;align-items:center;gap:8px">
-            <select class="fselect" onchange="window._calType=this.value;renderCalendar()">
+            <select class="fselect" onchange="var v=this.value;window._calType=v;renderCalendar()">
               <option value="all"${type==='all'?' selected':''}>All</option>
               <option value="futures"${type==='futures'?' selected':''}>Futures</option>
               <option value="options"${type==='options'?' selected':''}>Options</option>
@@ -612,6 +611,10 @@ function renderCalendar(){
 }
 
 function showDayTrades(k){
+  // Small timeout to let iOS finish touch event before DOM manipulation
+  setTimeout(function(){_showDayTrades(k);},10);
+}
+function _showDayTrades(k){
   try{
     const dd=window._dayMap&&window._dayMap[k];
     if(!dd||!dd.trades.length)return;
@@ -643,7 +646,7 @@ function showDayTrades(k){
       </div>
     `;
     el.scrollIntoView({behavior:'smooth',block:'start'});
-  }catch(e){console.error('showDayTrades:',e);}
+  }catch(e){console.error('_showDayTrades:',e);}
 }
 async function loadData(){
   setSyncState('busy');
